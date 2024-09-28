@@ -11,7 +11,7 @@ const Footer = () => {
     const handleSumbit = (e) =>
     {
         e.preventDefault();
-        axios.post('http://localhost:6969/subscribed-email', values)
+        axios.post('http://localhost:6969/subscribed_email', values)
             .then(res => console.log(res))
             .catch(err => console.error(err))
     }

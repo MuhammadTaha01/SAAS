@@ -19,15 +19,59 @@ const GymAddStudent = () => {
   },[])
 
   const columns = [
-    { name: 'ID', selector: row => row.id, sortable: true, width: '100px'},
-    { name: 'Student Name', selector: row => row.student_name || 'NULL'},
-    { name: 'G-mail', selector: row => row.student_mail || 'NULL'},
-    { name: 'Address', selector: row => row.student_address || 'NULL'},
-    { name: 'Contact #01', selector: row => row.student_contact1 || 'NULL'},
-    { name: 'Contact #02', selector: row => row.student_contact2 || 'NULL'},
-    { name: 'Gender', selector: row => row.student_gender || 'NULL'},
-    { name: 'Date Of Joining', selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL' }
-  ];
+    { name: 'ID', selector: row => row.id, sortable: true, width: '70px' },
+    { 
+      name: 'Student Name', 
+      selector: row => row.student_name || 'NULL', 
+      width: '120px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_name || 'NULL'}</div>
+    },
+    { 
+      name: 'G-mail', 
+      selector: row => row.student_mail || 'NULL', 
+      width: '230px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_mail || 'NULL'}</div>
+    },
+    { 
+      name: 'Address', 
+      selector: row => row.student_address || 'NULL', 
+      width: '200px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_address || 'NULL'}</div>
+    },
+    { 
+      name: 'Contact #01', 
+      selector: row => row.student_contact1 || 'NULL', 
+      width: '150px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_contact1 || 'NULL'}</div>
+    },
+    { 
+      name: 'Contact #02', 
+      selector: row => row.student_contact2 || 'NULL', 
+      width: '150px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_contact2 || 'NULL'}</div>
+    },
+    { 
+      name: 'Gender', 
+      selector: row => row.student_gender || 'NULL', 
+      width: '100px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_gender || 'NULL'}</div>
+    },
+    { 
+      name: 'Fee', 
+      selector: row => row.fee || 'NULL', 
+      width: '80px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.fee || 'NULL'}</div>
+    },
+    { 
+      name: 'Date Of Joining', 
+      selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL', 
+      width: '150px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL'}</div>
+    }
+      // ignoreRowClick: true,
+      // allowOverflow: true,
+];
+
 
   const customStyles = {
     headCells: {
@@ -72,7 +116,7 @@ const GymAddStudent = () => {
                   </tr>
                 </thead> */}
 
-                <div className="mx-10 w-[110%] mt-5">
+                <div className="mx-10 mt-5">
                   <DataTable
                     columns={columns}
                     data={studentData}

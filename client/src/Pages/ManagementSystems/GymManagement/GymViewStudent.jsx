@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from './GymComponents/Sidebar'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
+import { Link, useParams } from 'react-router-dom'
 
 
 const GymViewStudent = () => {
 
   const [ studentData, setStudentData ] = useState([])
   const [filteredData, setFilteredData] = useState([]); // <-- Missing state declaration
+  const { system, version } = useParams();
 
   useEffect(() => {
       axios.get('http://localhost:6969/view-student') 
@@ -25,7 +27,17 @@ const GymViewStudent = () => {
 
   const handleDelete = (id) =>
   {
-    console.log(id);
+    if(window.confirm('Are you sure you want to delete this student?'))
+    {
+      axios.delete(`http://localhost:6969/delete-student/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        // Update the state after successful deletion
+        setStudentData(studentData.filter(student => student.id !== id));
+        setFilteredData(filteredData.filter(student => student.id !== id));
+      })
+      .catch((err) => console.log(err))
+    }
   }
   
 
@@ -69,6 +81,12 @@ const GymViewStudent = () => {
       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_gender || 'NULL'}</div>
     },
     { 
+      name: 'Fee', 
+      selector: row => row.fee || 'NULL', 
+      width: '80px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.fee || 'NULL'}</div>
+    },
+    { 
       name: 'Date Of Joining', 
       selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL', 
       width: '120px',
@@ -76,14 +94,17 @@ const GymViewStudent = () => {
     },
     {
       name: 'Actions',
+      width: '150px',
       cell: row => (
         <div className="flex gap-2" style={{ whiteSpace: 'normal' }}>
-          <button
-            className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-purple-200 bg-purple-800 hover:bg-purple-600"
-            onClick={() => handleUpdate(row.id)}
-          >
-            Update
-          </button>
+          <Link to={`/products/${system}/${version}/update/${row.id}`}>
+            <button
+              className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-purple-200 bg-purple-800 hover:bg-purple-600"
+              onClick={() => handleUpdate(row.id)}
+              >
+              Update
+            </button>
+          </Link>
           <button
             className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-red-200 bg-red-800 hover:bg-red-600"
             onClick={() => handleDelete(row.id)}

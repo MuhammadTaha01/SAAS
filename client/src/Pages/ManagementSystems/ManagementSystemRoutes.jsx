@@ -1,8 +1,12 @@
 // For gym management system
 import GymDashboard from './GymManagement/GymDashboard'
 import GymAddStudent from './GymManagement/GymAddStudent'
-import Add from './GymManagement/SubPages/Add'
+import AddStudent from './GymManagement/SubPages/AddStudent'
 import ViewStudent from './GymManagement/GymViewStudent'
+// import AddAttendance from './GymManagement/GymAddAttendance'
+// import ViewAttendance from './GymManagement/GymViewAttendance'
+import GymFeeStatus from './GymManagement/GymFeeStatus'
+import UpdateStudent from './GymManagement/SubPages/UpdateStudent'
 
 
 // For academy management system
@@ -18,11 +22,13 @@ const ManagementSystemRoutes = () => {
                 <>
                     <Route path='dashboard' element={<GymDashboard/>} />
                     <Route path='add-students' element={<GymAddStudent />} />
-                    <Route path='add' element={<Add />} />
-                    {/* <Route path='update/:studentId' element={<Update/>} /> */}
+                    <Route path='add' element={<AddStudent />} />
+                    <Route path='update/:id' element={<UpdateStudent/>} />
                     <Route path='view-students' element={<ViewStudent />} />
-                    {/* <Route path='attendance' element={<Attendance />} />
-                    <Route path='fee-collected' element={<FeeCollected />} />
+                    {/* <Route path='add-attendance' element={<AddAttendance />} />
+                    <Route path='view-attendance' element={<ViewAttendance />} /> */}
+                    <Route path='fee-status' element={<GymFeeStatus />} />
+                    {/* <Route path='fee-collected' element={<FeeCollected />} />
                     <Route path='helpcenter' element={<Help />} /> */}
                 </>
             )}
