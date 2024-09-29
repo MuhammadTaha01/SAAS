@@ -3,6 +3,7 @@ import cors from 'cors'
 import mysql from 'mysql'
 import Create from './CRUD Controllers/Create.js'
 import Read from './CRUD Controllers/Read.js'
+import Update from './CRUD Controllers/Update.js'
 import Delete from './CRUD Controllers/Delete.js'
 
 
@@ -33,6 +34,7 @@ db.connect((err) => {
 
 app.use('/',Create);
 app.use('/',Read);
+app.use('/',Update);
 app.use('/',Delete);
 
 

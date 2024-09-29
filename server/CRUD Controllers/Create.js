@@ -60,23 +60,23 @@ router.post('/add_students',(req,res) => {
 
 
 
-router.post('/add_attendance',(req,res) => {
-    const sql = 'INSERT INTO `gym_addstudents` (attendance) VALUES (?)';
-    const { attendance } = req.body;
+// router.post('/add_attendance',(req,res) => {
+//     const sql = 'INSERT INTO `gym_addstudents` (attendance) VALUES (?)';
+//     const { attendance } = req.body;
 
-    db.query(sql,[attendance], (err,results) => {
-        if(err)
-        {
-            console.error('Error in inserting into db: ',err);
-            return res.json(500).send('Error inserting into db');
-        }
-        else
-        {
-            console.log('Attendance marked');
-            return res.json(200).send('Attendance added');
-        }
-    })
-})
+//     db.query(sql,[attendance], (err,results) => {
+//         if(err)
+//         {
+//             console.error('Error in inserting into db: ',err);
+//             return res.json(500).send('Error inserting into db');
+//         }
+//         else
+//         {
+//             console.log('Attendance marked');
+//             return res.json(200).send('Attendance added');
+//         }
+//     })
+// })
 
 
 export default router;

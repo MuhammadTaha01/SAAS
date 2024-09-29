@@ -1,14 +1,16 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 const UpdateStudent = () => {
 
   const { system, version } = useParams();
+  const navigate = useNavigate();
 
   const handleSumbit = (e) =>
   {
     e.preventDefault();
+    navigate(`/products/${system}/${version}/view-students`);
   }
 
   return (
@@ -101,7 +103,7 @@ const UpdateStudent = () => {
                 </select>
               </div>
 
-              <button className='font-semibold w-full text-[15px] mx-10 bg-purple-400 text-purple-800 border-[1px] border-purple-800 rounded-xl px-5 p-1 hover:text-purple-700 hover:bg-purple-300 hover:transition-all duration-200'>Update</button>
+              <button className='font-semibold w-full text-[15px] mx-10 bg-purple-400 text-purple-800 border-[1px] border-purple-800 rounded-xl px-5 p-1 hover:text-purple-700 hover:bg-purple-300 hover:transition-all duration-200'>Update Student</button>
             </form>
 
           </div>
