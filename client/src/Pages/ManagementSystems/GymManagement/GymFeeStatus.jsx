@@ -53,7 +53,7 @@ const GymFeeStatus = () => {
         { name: 'Fee Status', selector: row => row.fee_status || 'Un-Paid', width: '100px' },
         { name: 'Fee To be paid', selector: row => row.fee || 'Not Entered Yet', width: '150px' },
         {
-            name: 'Action',
+          name: 'Action',
             cell: row => (
                 <select 
                     value={selectedFee.id === row.id ? selectedFee.fee_status : ""}
@@ -65,17 +65,28 @@ const GymFeeStatus = () => {
                 </select>
             ),
             width: '150px'
-        },
-        {
-            name: 'Check Fee History',
-            cell: row => (
-                <button
-                    className='font-semibold text-[15px] bg-pink-400 text-pink-800 border-[1px] border-pink-800 rounded-xl px-5 p-1 hover:text-pink-700 hover:bg-pink-300 hover:transition-all duration-200'
-                    onClick={() => console.log(row.id)}
-                >Check</button>
-            ),
-            width: '150px'
-        }
+          },
+          { name: 'Date Of Joining', selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL', width: '150px' },
+          {
+              name: 'Check Fee History',
+              cell: row => (
+                  <button
+                      className='font-semibold text-[15px] bg-pink-400 text-pink-800 border-[1px] border-pink-800 rounded-xl px-5 p-1 hover:text-pink-400 hover:bg-pink-800 hover:transition-all duration-200'
+                      onClick={() => console.log(row.id)}
+                  >Check</button>
+              ),
+              width: '170px'
+          },
+          {
+              name: 'Generate Fee Slip',
+              cell: row => (
+                  <button
+                      className='font-semibold text-[15px] bg-pink-800 text-pink-400 border-[1px] border-pink-800 rounded-xl px-5 p-1 hover:text-pink-700 hover:bg-pink-400 hover:transition-all duration-200'
+                      onClick={() => console.log(row.id)}
+                  >Generate</button>
+              ),
+              width: '180px'
+          }
     ];
 
     const customStyles = {

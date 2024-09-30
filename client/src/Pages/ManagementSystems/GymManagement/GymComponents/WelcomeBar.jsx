@@ -9,7 +9,7 @@ const WelcomeBar = () => {
     return (
         <div className='mx-10 mt-10 flex gap-60'>
             
-            <div className="">
+            <div className="whitespace-nowrap">
                 <h1>Welcome - <span className='font-semibold'>{user.name}</span>👋</h1>
             </div>
 

@@ -42,5 +42,28 @@ router.put('/update_fee_status_students/:id', (req, res) => {
 
 
 
+// Update student
+router.put('/update-student/:id', (req, res) => {
+    const { id } = req.params;
+    const { student_name, student_mail, student_address, student_contact1, student_contact2, fee, student_gender } = req.body;
+  
+    const sql = 'UPDATE gym_addstudents SET student_name = ?, student_mail = ?, student_address = ?, student_contact1 = ?, student_contact2 = ?, fee = ?, student_gender = ? WHERE id = ?';
+  
+    db.query(sql, [student_name, student_mail, student_address, student_contact1, student_contact2, fee, student_gender, id], (err, result) => {
+      if (err) {
+        console.error('Error updating student:', err);
+        return res.status(500).send('Error updating student');
+      }
+  
+      if (result.affectedRows === 0) {
+        return res.status(404).send('Student not found');
+      }
+  
+      res.status(200).json({ message: 'Student updated successfully' });
+    });
+  });
+  
+
+
 
 export default router;

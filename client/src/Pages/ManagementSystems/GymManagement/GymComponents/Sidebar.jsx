@@ -30,6 +30,10 @@ const Sidebar = () => {
           <Link to={`/products/${system}/${version}/fee-status`} className='flex flex-col'>
             <button className='font-semibold flex flex-col items-center whitespace-nowrap text-blue-900 rounded-xl text-[17px] p-2 my-2 hover:bg-blue-500 hover:text-white hover:transition-all hover:duration-200'>Fee Status</button>
           </Link>
+
+          <Link to={`/products/${system}/${version}/payment`} className='flex flex-col'>
+            <button className='font-semibold flex flex-col items-center whitespace-nowrap text-blue-900 rounded-xl text-[17px] p-2 my-2 hover:bg-blue-500 hover:text-white hover:transition-all hover:duration-200'>Payment</button>
+          </Link>
         </div>
 
         <div className="flex flex-col">
