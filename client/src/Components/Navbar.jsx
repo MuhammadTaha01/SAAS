@@ -6,7 +6,7 @@ const Navbar = () =>
 {
 
     const { loginWithRedirect } = useAuth0();
-    const { isAuthenticated,user, logout } = useAuth0();
+    const { isAuthenticated, user, logout } = useAuth0();
     return(
         <div className="flex p-1 mt-4 items-center justify-center bg-white rounded-3xl border-[1px] border-gray-400 mx-40 gap-[150px]">
             <div className="bg-white">
@@ -18,12 +18,18 @@ const Navbar = () =>
                 <Link to={'/'} className="bg-white">
                     <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">Home</button>
                 </Link>
+                <Link to={'/services'}>
                     <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">Services</button>
+                </Link>
                 <Link to={'/products'} className="bg-white">
                     <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">Products</button>
                 </Link>
-                <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">About Us</button>
-                <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">Contact Us</button>
+                <Link to={'/about-us'}>
+                    <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">About Us</button>
+                </Link>
+                <Link to={'/contact-us'}>
+                    <button className="bg-white font-medium mx-3 p-2 rounded-xl hover:bg-slate-600 hover:text-white hover:duration-300">Contact Us</button>
+                </Link>
             </div>
             <div className="">
                 {
