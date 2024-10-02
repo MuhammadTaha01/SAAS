@@ -51,8 +51,8 @@ router.post('/add_students',(req,res) => {
             }
             else
             {
-                console.log('Blog added successfully');
-                return res.status(200).send('Blog added')
+                console.log('Student added successfully');
+                return res.status(200).send('Student added')
             }
     })
 })

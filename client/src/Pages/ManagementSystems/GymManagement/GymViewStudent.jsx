@@ -3,6 +3,8 @@ import Sidebar from './GymComponents/Sidebar'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
 import { Link, useParams } from 'react-router-dom'
+import ExcelJs from 'exceljs'
+import { saveAs } from 'file-saver';
 
 
 const GymViewStudent = () => {
@@ -19,6 +21,10 @@ const GymViewStudent = () => {
         })
         .catch(err => console.log(err))
   },[])
+
+  const handleStatusChange = (id, fee_status) => {
+    setSelectedFee({ id, fee_status });
+  };
 
   const handleUpdate = (id) =>
   {
@@ -39,6 +45,49 @@ const GymViewStudent = () => {
       .catch((err) => console.log(err))
     }
   }
+
+
+  const exportToExcelAndWhatsApp = async () => {
+    // Step 1: Convert filtered data to an Excel sheet
+    const workbook = new ExcelJs.Workbook();
+    const worksheet = workbook.addWorksheet('Students');
+
+    if(window.confirm('Are you sure you want to install excel and send it on whatsapp?'))
+    {
+        worksheet.columns = [
+          { header: 'ID', key: 'id', width: 10 },
+          { header: 'Student Name', key: 'student_name', width: 20 },
+          { header: 'G-mail', key: 'student_mail', width: 30 },
+          { header: 'Address', key: 'student_address', width: 30 },
+          { header: 'Contact # 01', key: 'student_contact1', width: 30 },
+          { header: 'Contact # 02', key: 'student_contact2', width: 30 },
+          { header: 'Gender', key: 'student_gender', width: 30 },
+          { header: 'Fee', key: 'fee', width: 30 },
+        ];
+
+        worksheet.getRow(1).eachCell(cell => {
+          cell.font = { bold: true };
+          cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        });
+        // Adding data to worksheet
+        filteredData.forEach(student => {
+          worksheet.addRow(student);
+        });
+      
+        // Step 2: Create Blob and save it
+        const buffer = await workbook.xlsx.writeBuffer();
+        const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+        const fileName = `Students_Data.xlsx`;
+        saveAs(file, fileName);
+      
+        // Step 3: Open WhatsApp link
+        const whatsappNumber = '+92 018171334'; // Set the recipient phone number (include country code)
+        const whatsappMessage = `I have exported the student data. Please find the attached Excel file: ${fileName}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+  };
+  
   
 
 
@@ -53,7 +102,7 @@ const GymViewStudent = () => {
     { 
       name: 'G-mail', 
       selector: row => row.student_mail || 'NULL', 
-      width: '230px',
+      width: '220px',
       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_mail || 'NULL'}</div>
     },
     { 
@@ -171,8 +220,9 @@ const customStyles = {
                     <th className='border border-gray-500 p-2'>Actions</th>
                   </tr>
                 </thead> */}
-                <div className="mx-10">
+                <div className="mx-10 flex justify-between">
                   <input type="text" placeholder='Search By Name...' className='border-black border-[2px] rounded-xl p-1 px-5 m-2' onChange={handleChange}/>
+                  <button className='font-semibold text-[15px] bg-green-700 text-white rounded-xl m-1 px-3 hover:bg-green-500' onClick={exportToExcelAndWhatsApp}>Export & Send via Whatsapp</button>
                 </div>
 
                 <div className="mx-10 w-full">

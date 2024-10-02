@@ -4,10 +4,29 @@ import { useAuth0 } from '@auth0/auth0-react';
 const WelcomeBar = () => {
     const { user, isLoading } = useAuth0();
 
-    if (isLoading) return <div className='mx-10 mt-10'>Loading...</div>;
+    if (isLoading)
+    {
+        return(
+            <div className='mx-10 mt-10 flex gap-60 items-center justify-center'>
+                <div className="">
+                    <div className="bg-gray-500 rounded-xl p-3 px-28"></div>
+                </div>
+                <div className="">
+                    <div className="bg-gray-400 rounded-xl py-5 px-44"></div>
+                </div>
+                <div className="flex gap-2">
+                    <div className="bg-gray-700 rounded-full p-5 px-6"></div>
+                    <div className="flex flex-col gap-2">
+                        <div className="bg-gray-500 rounded-xl p-3 px-10"></div>
+                        <div className="bg-gray-500 rounded-xl p-3 px-10"></div>
+                    </div>
+                </div>
+            </div>
+        )
+    } 
 
     return (
-        <div className='mx-10 mt-10 flex gap-60'>
+        <div className='mx-10 mt-10 flex gap-60 items-center justify-center'>
             
             <div className="whitespace-nowrap">
                 <h1>Welcome - <span className='font-semibold'>{user.name}</span>👋</h1>

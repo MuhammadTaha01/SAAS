@@ -32,6 +32,16 @@ const Add = () => {
     axios.post('http://localhost:6969/add_students', updatedValues)
       .then(res => console.log(res))
       .catch(err => console.error(err));
+
+      // Step 2: Send Welcome Email
+      if (updatedValues.student_mail) {
+        axios.post('http://localhost:6969/send_welcome_email', {
+          student_email: updatedValues.student_mail,
+          student_name: updatedValues.student_name,
+        })
+        .then((res) => console.log('Email sent successfully'))
+        .catch((err) => console.error('Failed to send email', err));
+      }
       
       setValues({
         student_name: '',
@@ -45,6 +55,7 @@ const Add = () => {
       });
 
       navigate(`/products/${system}/${version}/add-students`);
+      window.location.reload();
 
       console.log(`Name: ${updatedValues.student_name} | Mail: ${updatedValues.student_mail} | Address: ${updatedValues.student_address} | Contact1: ${updatedValues.student_contact1}
                 | Contact2: ${updatedValues.student_contact2} | Fee: ${updatedValues.fee} | Gender: ${updatedValues.student_gender}`);
@@ -71,7 +82,7 @@ const Add = () => {
                   type="text" 
                   name="student_name"
                   value={values.student_name}
-                  placeholder='Taha,Ali...' 
+                  placeholder='Taha,Ali...'
                   className='border-gray-500 border-[2px] rounded-xl p-1'
                   onChange={(e) => setValues({...values, student_name:e.target.value})}
                 />

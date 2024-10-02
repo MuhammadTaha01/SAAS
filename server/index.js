@@ -5,6 +5,7 @@ import Create from './CRUD Controllers/Create.js'
 import Read from './CRUD Controllers/Read.js'
 import Update from './CRUD Controllers/Update.js'
 import Delete from './CRUD Controllers/Delete.js'
+import SendMail from './Email Controllers/SendEmail.js'
 
 
 const app = express();
@@ -36,6 +37,7 @@ app.use('/',Create);
 app.use('/',Read);
 app.use('/',Update);
 app.use('/',Delete);
+app.use('/',SendMail);
 
 
 app.get('/',(err,res) => {

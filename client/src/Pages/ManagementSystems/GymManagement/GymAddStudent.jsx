@@ -29,7 +29,7 @@ const GymAddStudent = () => {
     { 
       name: 'G-mail', 
       selector: row => row.student_mail || 'NULL', 
-      width: '230px',
+      width: '200px',
       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_mail || 'NULL'}</div>
     },
     { 
