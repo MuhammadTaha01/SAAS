@@ -3,9 +3,10 @@ import Sidebar from './GymComponents/Sidebar'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
 import { Link, useParams } from 'react-router-dom'
-import ExcelJs from 'exceljs'
+// import ExcelJs from 'exceljs'
+// import 'jspdf-autotable';
 import { saveAs } from 'file-saver';
-
+import { jsPDF } from 'jspdf';
 
 const GymViewStudent = () => {
 
@@ -47,46 +48,91 @@ const GymViewStudent = () => {
   }
 
 
-  const exportToExcelAndWhatsApp = async () => {
-    // Step 1: Convert filtered data to an Excel sheet
-    const workbook = new ExcelJs.Workbook();
-    const worksheet = workbook.addWorksheet('Students');
 
-    if(window.confirm('Are you sure you want to install excel and send it on whatsapp?'))
-    {
-        worksheet.columns = [
-          { header: 'ID', key: 'id', width: 10 },
-          { header: 'Student Name', key: 'student_name', width: 20 },
-          { header: 'G-mail', key: 'student_mail', width: 30 },
-          { header: 'Address', key: 'student_address', width: 30 },
-          { header: 'Contact # 01', key: 'student_contact1', width: 30 },
-          { header: 'Contact # 02', key: 'student_contact2', width: 30 },
-          { header: 'Gender', key: 'student_gender', width: 30 },
-          { header: 'Fee', key: 'fee', width: 30 },
-        ];
 
-        worksheet.getRow(1).eachCell(cell => {
-          cell.font = { bold: true };
-          cell.alignment = { vertical: 'middle', horizontal: 'center' };
-        });
-        // Adding data to worksheet
-        filteredData.forEach(student => {
-          worksheet.addRow(student);
-        });
+
+  const exportToPdfAndWhatsApp = () => {
+  if (window.confirm('Are you sure you want to export the data as a PDF and share on WhatsApp?')) {
+    // Step 1: Create PDF document in landscape mode
+    const doc = new jsPDF('l'); // 'l' stands for landscape
+
+    // Adding title to PDF
+    doc.setFontSize(14);
+    doc.text('Students Data', 14, 10);
+
+    // Step 2: Define table structure
+    const tableColumns = [
+      { header: 'ID', width: 15 },
+      { header: 'Student Name', width: 40 },
+      { header: 'G-mail', width: 60 },
+      { header: 'Address', width: 50 },
+      { header: 'Contact #01', width: 30 },
+      { header: 'Contact #02', width: 30 },
+      { header: 'Gender', width: 20 },
+      { header: 'Fee', width: 20 }
+    ];
+
+    let startY = 20; // Starting Y position for the table
+
+    // Set header font style
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+
+    // Step 3: Add table headers
+    let startX = 14;
+    tableColumns.forEach(column => {
+      doc.text(column.header, startX, startY);
+      startX += column.width; // Move X for next header
+    });
+
+    startY += 10; // Update Y position for the next row
+
+    // Step 4: Add rows of data to the PDF
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8); // Decrease font size for better fitting
+
+    filteredData.forEach(student => {
+      const row = [
+        student.id.toString(),
+        student.student_name || 'NULL',
+        student.student_mail || 'NULL',
+        student.student_address || 'NULL',
+        student.student_contact1 || 'NULL',
+        student.student_contact2 || 'NULL',
+        student.student_gender || 'NULL',
+        student.fee || 'NULL'
+      ];
       
-        // Step 2: Create Blob and save it
-        const buffer = await workbook.xlsx.writeBuffer();
-        const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
-        const fileName = `Students_Data.xlsx`;
-        saveAs(file, fileName);
-      
-        // Step 3: Open WhatsApp link
-        const whatsappNumber = '+92 018171334'; // Set the recipient phone number (include country code)
-        const whatsappMessage = `I have exported the student data. Please find the attached Excel file: ${fileName}`;
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappUrl, '_blank');
-    }
-  };
+      startX = 14;
+      row.forEach((data, index) => {
+        const columnWidth = tableColumns[index].width;
+        const text = doc.splitTextToSize(data, columnWidth); // Handle wrapping of content
+        doc.text(text, startX, startY);
+        startX += columnWidth; // Move X for next column
+      });
+
+      startY += 10;
+
+      // Check if the page needs to be added
+      if (startY > 190) { // Adjusted for landscape height
+        doc.addPage();
+        startY = 20;
+      }
+    });
+
+    // Step 5: Save the PDF
+    const fileName = 'Students_Data.pdf';
+    doc.save(fileName);
+  
+    // Step 6: Open WhatsApp link
+    const whatsappNumber = '+92 018171334'; // Set the recipient phone number (include country code)
+    const whatsappMessage = `I have exported the student data. Please find the attached PDF file: ${fileName}`;
+    const whatsappUrl = `https://web.whatsapp.com/`;
+    window.open(whatsappUrl, '_blank');
+  }
+};
+
+  
   
   
 
@@ -222,7 +268,7 @@ const customStyles = {
                 </thead> */}
                 <div className="mx-10 flex justify-between">
                   <input type="text" placeholder='Search By Name...' className='border-black border-[2px] rounded-xl p-1 px-5 m-2' onChange={handleChange}/>
-                  <button className='font-semibold text-[15px] bg-green-700 text-white rounded-xl m-1 px-3 hover:bg-green-500' onClick={exportToExcelAndWhatsApp}>Export & Send via Whatsapp</button>
+                  <button className='font-semibold text-[15px] bg-green-700 text-white rounded-xl m-1 px-3 hover:bg-green-500' onClick={exportToPdfAndWhatsApp}>Export .pdf</button>
                 </div>
 
                 <div className="mx-10 w-full">
