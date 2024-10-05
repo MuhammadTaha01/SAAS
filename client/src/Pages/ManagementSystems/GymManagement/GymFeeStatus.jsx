@@ -315,7 +315,7 @@ const GymFeeStatus = () => {
                             customStyles={customStyles}
                             highlightOnHover
                             selectableRows={false}
-                            />
+                        />
                         <button className='mt-1 border whitespace-nowrap w-full border-gray-500 p-2 rounded-xl font-semibold text-green-200 bg-green-800 hover:bg-green-600'>SAVE</button>
                     </form>
                 </div>

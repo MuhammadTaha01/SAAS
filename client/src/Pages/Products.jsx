@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import Cards from '../CommonComponents/Cards'
@@ -11,10 +11,30 @@ const Products = () => {
 
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
+  const [country, setCountry] = useState('Pakistan');
 
-  const handleNavigate = (route) => {
+  const handleNavigate = (route) => 
+  {
     navigate(`/products/${route}`);
   }
+
+  useEffect(() => {
+    const language = navigator.language || navigator.languages[0];
+        console.log('Detected language:', language);
+      
+        if (language.includes('en-US') || language.includes('en')) 
+        {
+          setCountry('United States');
+        } 
+        else if (language.includes('ur') || language.includes('en-PK') || language.includes('pk')) 
+        {
+          setCountry('Pakistan');
+        } 
+        else 
+        {
+          setCountry('United States');
+        }
+  },[country])
 
   return (
     <div className=''>
@@ -29,7 +49,7 @@ const Products = () => {
                         to payment tracking. Easily monitor attendance, manage personal training schedules, and keep up-to-date with client
                         progress—all in one place. Simplify billing, reduce paperwork, and boost member satisfaction by providing a seamless 
                         experience.`}
-            price={'100-Rs'}
+            price={country === 'Pakistan' ? '100Rs' : '500$'}
             onCardClick={() => handleNavigate('gym')}
           />
           <Cards
@@ -37,7 +57,7 @@ const Products = () => {
             paragraph={`The Academy Management System is designed to facilitate efficient administration of educational institutes. It manages
                         student enrollment, attendance, grading, and fee payments with ease. Teachers can track student progress, assign coursework,
                         and communicate effectively with parents. This all-in-one solution ensures a structured and organized learning environment.`}
-            price={'200-Rs'}
+            price={country === 'Pakistan' ? '100Rs' : '500$'}
             onCardClick={() => handleNavigate('academy')}
           />
         </div>
