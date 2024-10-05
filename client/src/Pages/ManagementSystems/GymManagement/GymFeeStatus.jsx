@@ -77,49 +77,82 @@ const GymFeeStatus = () => {
     };
 
 
-      const exportToExcelAndWhatsApp = async () => {
-        // Step 1: Convert filtered data to an Excel sheet
-        const workbook = new ExcelJs.Workbook();
-        const worksheet = workbook.addWorksheet('Students');
-    
-        if (window.confirm('Are you sure you want to install excel and send it on whatsapp?')) {
-            worksheet.columns = [
-                { header: 'ID', key: 'id', width: 10 },
-                { header: 'Student Name', key: 'student_name', width: 20 },
-                { header: 'Fee Status', key: 'fee_status', width: 30 },
-                { header: 'Fee to be paid', key: 'fee', width: 30 },
-                { header: 'Date Of Joining', key: 'date_of_joining', width: 30 },
+    const exportToPdfAndWhatsApp = () => {
+        if (window.confirm('Are you sure you want to export the data as a PDF and share on WhatsApp?')) {
+          // Step 1: Create PDF document in landscape mode
+          const doc = new jsPDF('l'); // 'l' stands for landscape
+      
+          // Adding title to PDF
+          doc.setFontSize(14);
+          doc.text('Students Fee Data', 14, 10);
+      
+          // Step 2: Define table structure
+          const tableColumns = [
+            { header: 'ID', width: 15 },
+            { header: 'Student Name', width: 40 },
+            { header: 'G-mail', width: 60 },
+            { header: 'Fee', width: 20 },
+            { header: 'Fee Status', width: 20 },
+            { header: 'Gender', width: 20 },
+          ];
+      
+          let startY = 20; // Starting Y position for the table
+      
+          // Set header font style
+          doc.setFontSize(10);
+          doc.setFont("helvetica", "bold");
+      
+          // Step 3: Add table headers
+          let startX = 14;
+          tableColumns.forEach(column => {
+            doc.text(column.header, startX, startY);
+            startX += column.width; // Move X for next header
+          });
+      
+          startY += 10; // Update Y position for the next row
+      
+          // Step 4: Add rows of data to the PDF
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8); // Decrease font size for better fitting
+      
+          filteredData.forEach(student => {
+            const row = [
+              student.id.toString(),
+              student.student_name || 'NULL',
+              student.student_mail || 'NULL',
+              student.fee || 'NULL',
+              student.fee_status || 'NULL',
+              student.student_gender || 'NULL',
             ];
-    
-            worksheet.getRow(1).eachCell(cell => {
-                cell.font = { bold: true };
-                cell.alignment = { vertical: 'middle', horizontal: 'center' };
+            
+            startX = 14;
+            row.forEach((data, index) => {
+              const columnWidth = tableColumns[index].width;
+              const text = doc.splitTextToSize(data, columnWidth); // Handle wrapping of content
+              doc.text(text, startX, startY);
+              startX += columnWidth; // Move X for next column
             });
-    
-            // Adding data to worksheet
-            filteredData.forEach(student => {
-                const formattedStudent = {
-                    ...student,
-                    date_of_joining: student.Date_of_joining
-                        ? new Date(student.Date_of_joining).toLocaleDateString() // Format the date here
-                        : 'N/A', // Handle cases where the date is not available
-                };
-                worksheet.addRow(formattedStudent);
-            });
-    
-            // Step 2: Create Blob and save it
-            const buffer = await workbook.xlsx.writeBuffer();
-            const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
-            const fileName = `Students_Data.xlsx`;
-            saveAs(file, fileName);
-    
-            // Step 3: Open WhatsApp link
-            const whatsappNumber = '+92 018171334'; // Set the recipient phone number (include country code)
-            const whatsappMessage = `I have exported the student data. Please find the attached Excel file: ${fileName}`;
-            const whatsappUrl = `https://web.whatsapp.com/`;
-            window.open(whatsappUrl, '_blank');
+      
+            startY += 10;
+      
+            // Check if the page needs to be added
+            if (startY > 190) { // Adjusted for landscape height
+              doc.addPage();
+              startY = 20;
+            }
+          });
+      
+          // Step 5: Save the PDF
+          const fileName = 'Students_Data.pdf';
+          doc.save(fileName);
+        
+          // Step 6: Open WhatsApp link
+          const whatsappNumber = '+92 018171334'; // Set the recipient phone number (include country code)
+          const whatsappMessage = `I have exported the student data. Please find the attached PDF file: ${fileName}`;
+          const whatsappUrl = `https://web.whatsapp.com/`;
+          window.open(whatsappUrl, '_blank');
         }
-    };
+      };
     
 
     const handleGenerateFeeSlipClick = (e, row) => {
@@ -190,8 +223,8 @@ const GymFeeStatus = () => {
     const columns = [
         { name: 'ID', selector: row => row.id, sortable: true, width: '70px' },
         { name: 'Student Name', selector: row => row.student_name || 'NULL', width: '120px' },
-        { name: 'Fee Status', selector: row => row.fee_status ? row.fee_status.toLowerCase() : 'Status not updated', width: '200px' },
-        { name: 'Fee To be paid', selector: row => row.fee || 'Not Entered Yet', width: '150px' },
+        { name: 'Fee Status', selector: row => row.fee_status ? row.fee_status.toLowerCase() : 'Status not updated', width: '160px' },
+        { name: 'Fee To be paid', selector: row => row.fee || 'Not Entered Yet', width: '130px' },
         {
           name: 'Action',
             cell: row => (
@@ -204,9 +237,9 @@ const GymFeeStatus = () => {
                     <option value="un-paid">Un-Paid</option>
                 </select>
             ),
-            width: '150px'
+            width: '110px'
           },
-          { name: 'Date Of Joining', selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL', width: '150px' },
+          { name: 'Date Of Joining', selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL', width: '130px' },
           {
               name: 'Check Fee History',
               cell: row => (
@@ -215,7 +248,7 @@ const GymFeeStatus = () => {
                       onClick={() => console.log(row.id)}
                   >Check</button>
               ),
-              width: '170px'
+              width: '160px'
           },
           {
               name: 'Generate Fee Slip',
@@ -226,9 +259,20 @@ const GymFeeStatus = () => {
                         Generate
                     </button>
               ),
-              width: '180px'
+              width: '170px'
+          },
+          {
+              name: 'Send Fee Reminder',
+              cell: row => (
+                    <button
+                        className='font-semibold whitespace-nowrap text-[15px] bg-pink-800 text-pink-400 border-[1px] border-pink-800 rounded-xl px-5 p-1 hover:text-pink-700 hover:bg-pink-400 hover:transition-all duration-200'
+                        onClick={(e) => handleGenerateFeeSlipClick(e, row)}>
+                        Send Fee Reminder
+                    </button>
+              ),
+              width: '210px'
           }
-    ];
+        ];
 
     const customStyles = {
         headCells: {
@@ -258,10 +302,10 @@ const GymFeeStatus = () => {
 
                 <div className="flex justify-between mx-10 mt-2">
                     <input type="text" placeholder='Search By Name...' className='border-black border-[2px] rounded-xl p-1 px-5 m-2' onChange={handleChange}/>
-                    <button className='font-semibold text-[15px] bg-green-700 text-white rounded-xl m-1 px-3 hover:bg-green-500' onClick={exportToExcelAndWhatsApp}>Export & Send via Whatsapp</button>
+                    <button className='font-semibold text-[15px] bg-green-700 text-white rounded-xl m-1 px-3 hover:bg-green-500' onClick={exportToPdfAndWhatsApp}>Doenload .pdf & Send via Whatsapp</button>
                 </div>
 
-                <div className="mx-10">
+                <div className="mx-5">
                     <form onSubmit={handleSubmit}>
                         <DataTable
                             columns={columns}
