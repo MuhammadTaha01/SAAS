@@ -17,7 +17,7 @@ const Footer = () => {
     }
 
   return (
-    <div className='flex flex-col mt-5 bg-black p-20'>
+    <div className='flex flex-col mt-5 bg-black px-32 py-5'>
         
         <div className="flex items-center my-10 gap-80">
             <div className="">
@@ -25,7 +25,7 @@ const Footer = () => {
                 <h2 className='text-gray-300'>Sign up to receive Delta tuotorials and news. You can unsubscribe at any time.</h2>
             </div>
             <div className="flex gap-3">
-                <form onSubmit={handleSumbit}>
+                <form onSubmit={handleSumbit} className='flex'>
                     <input 
                         type="text" 
                         name="gmail" 
@@ -38,7 +38,7 @@ const Footer = () => {
             </div>
         </div>
             <hr />
-        <div className="flex items-center justify-center gap-32 my-10">
+        <div className="flex justify-center gap-32 my-8">
             <div className="flex flex-col items-center gap-1">
                 <h1 className='text-white font-semibold'>Use Cases</h1>
                 <h2 className='text-gray-300 cursor-pointer hover:underline'>UI Design</h2>
