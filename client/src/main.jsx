@@ -1,19 +1,16 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import './index.css'
+import { GoogleOAuthProvider } from '@react-oauth/google'; // Import GoogleOAuthProvider
+
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-<Auth0Provider
-    domain="dev-2mlojserqc0ytr8b.us.auth0.com"
-    clientId="VsxkTcFAJ45SsazlnuEIOMMS0nDKt8wM"
-    authorizationParams={{
-      redirect_uri: window.location.origin
-    }}
-  >
+  <>
+  <GoogleOAuthProvider clientId='531585026176-05fg5kipt9tk6hrr11pfc9qp9kv5m9bb.apps.googleusercontent.com'>
     <App />
-  </Auth0Provider>,
+  </GoogleOAuthProvider>
+  </>
 );

@@ -17,6 +17,7 @@ app.use(cors());
 
 const db = mysql.createConnection({
     host: 'localhost',
+    // port: '3306',
     database: 'devcrescentia',
     user: 'root',
     password: ''
@@ -25,7 +26,7 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if(err)
     {
-        console.log('Error while connecting to database')
+        console.log('Error while connecting to database: ',err.message)
     }
     else
     {

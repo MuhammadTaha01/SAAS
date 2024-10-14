@@ -21,7 +21,7 @@ const Sidebar = () => {
 
       <div className="">
 
-        <div className="flex flex-col gap-3 mb-[50%]">
+        <div className="flex flex-col gap-3 mb-[10%]">
           <Link to={`/products/${system}/${version}/dashboard`} className='flex flex-col'>
             <button className='font-semibold text-blue-900 rounded-xl text-[17px] p-2 my-2 hover:bg-blue-500 hover:text-white hover:transition-all hover:duration-200'>Dashboard</button>
           </Link>
@@ -40,6 +40,10 @@ const Sidebar = () => {
 
           <Link to={`/products/${system}/${version}/external-services`} className='flex flex-col'>
             <button className='font-semibold flex flex-col items-center whitespace-nowrap text-blue-900 rounded-xl text-[17px] p-2 my-2 hover:bg-blue-500 hover:text-white hover:transition-all hover:duration-200'>External Services</button>
+          </Link>
+
+          <Link to={`/products/${system}/${version}/external-services`} className='flex flex-col'>
+            <button className='font-semibold flex flex-col items-center whitespace-nowrap text-blue-900 rounded-xl text-[17px] p-2 my-2 hover:bg-blue-500 hover:text-white hover:transition-all hover:duration-200'>Fine</button>
           </Link>
 
           <Link to={`/products/${system}/${version}/payment`} className='flex flex-col'>
