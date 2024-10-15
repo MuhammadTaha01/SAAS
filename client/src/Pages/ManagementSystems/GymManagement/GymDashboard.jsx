@@ -18,11 +18,26 @@ const GymDashboard = () => {
         <WelcomeBar/>
 
         <div className="flex items-center justify-center mt-3">
-          <GymCards/>
-          <GymCards/>
-          <GymCards/>
-          <GymCards/>
-          <GymCards/>
+          <GymCards
+            heading={'Total Students'}
+            number={10}
+          />
+          <GymCards
+            heading={'Total Students'}
+            number={10}
+          />
+          <GymCards
+            heading={'Total Students'}
+            number={10}
+          />
+          <GymCards
+            heading={'Total Students'}
+            number={10}
+          />
+          <GymCards
+            heading={'Total Students'}
+            number={10}
+          />
         </div>
 
         <div className="flex gap-5 mx-10 mt-5">
