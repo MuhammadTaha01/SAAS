@@ -5,10 +5,12 @@ import GymCards from './GymComponents/GymCards'
 import Pie from '../GymManagement/GymComponents/GymPieChart'
 import Line from '../GymManagement/GymComponents/GymLineChart'
 import Radar from '../GymManagement/GymComponents/GymRadarChart'
+import { useParams } from 'react-router-dom'
 
 
 const GymDashboard = () => {
-  
+  const { version } = useParams();
+
   return (
     <div className="flex">
 
@@ -21,22 +23,27 @@ const GymDashboard = () => {
           <GymCards
             heading={'Total Students'}
             number={10}
-          />
+            title={'Total Students in gym till now.'}
+            />
           <GymCards
-            heading={'Total Students'}
+            heading={'Total Profit'}
             number={10}
-          />
+            title={'Total Profit of gym till now.'}
+            />
           <GymCards
-            heading={'Total Students'}
+            heading={'Total Loss'}
             number={10}
-          />
+            title={'Total Loss of gym till now.'}
+            />
           <GymCards
-            heading={'Total Students'}
+            heading={'Total External-Services'}
             number={10}
-          />
+            title={'Total External Services gym has taken till now.'}
+            />
           <GymCards
-            heading={'Total Students'}
-            number={10}
+            heading={'Current Plan'}
+            number={version}
+            title={version}
           />
         </div>
 
