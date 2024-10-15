@@ -19,7 +19,7 @@ const LineChart = () => {
     datasets: [
       {
         label: 'Progress Over Time',
-        data: [65, 59, 80, 81, 56, 55],
+        data: [10,30,50,70,90,100],
         fill: false,
         borderColor: '#4bc0c0',
       },
