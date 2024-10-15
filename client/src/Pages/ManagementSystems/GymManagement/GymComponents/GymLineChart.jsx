@@ -27,7 +27,7 @@ const LineChart = () => {
   };
 
   return (
-    <div style={{ width: '600px', height: '250px' }} className='p-1 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
+    <div style={{ width: '500px', height: '250px' }} className='p-1 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
         {/* <h2 className='text-center font-bold'>Business Growth</h2> */}
         <Line data={data} title='This is LineChart'/>
     </div>

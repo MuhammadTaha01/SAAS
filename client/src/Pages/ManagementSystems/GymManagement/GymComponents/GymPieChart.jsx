@@ -19,7 +19,7 @@ const PieChart = () => {
   };
 
   return (
-    <div style={{ width: '300px', height: '250px' }} className='p-4 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
+    <div style={{ width: '250px', height: '250px' }} className='p-4 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
         {/* <h2 className='text-center font-bold'>Profit and Loss</h2> */}
         <Pie data={data} title='This is piechart'/>
     </div>

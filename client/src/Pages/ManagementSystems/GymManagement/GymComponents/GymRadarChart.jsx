@@ -33,7 +33,7 @@ const RadarChart = () => {
   };
 
   return (
-    <div style={{ width: '300px', height: '250px' }} className='p-2 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
+    <div style={{ width: '250px', height: '250px' }} className='p-2 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
       {/* Title Above the Radar Chart */}
       {/* <h2 className='text-center font-bold mb-4'>Gym Member Performance Analysis</h2> */}
 
