@@ -98,8 +98,8 @@ const Navbar = () => {
                     {
                         isAuthenticated ? (
                             <div className="flex gap-2 items-center">
-                                <div className="flex items-center justify-center bg-gray-300 border-[1px] border-black rounded-full h-11 w-11" title="You are logged in!!!">
-                                    <span className="text-black font-bold text-[20px]">{user?.name.charAt(0)}</span>
+                                <div className="flex items-center justify-center bg-pink-300 border-[1px] border-black rounded-full h-12 w-12" title="You are logged in!!!">
+                                    <span className="text-pink-800 font-bold text-[20px]">{user?.name.charAt(0)}</span>
                                 </div>
                                 <button onClick={handleLogout} className="p-2 text-white bg-black rounded-3xl px-5">
                                     Log Out
