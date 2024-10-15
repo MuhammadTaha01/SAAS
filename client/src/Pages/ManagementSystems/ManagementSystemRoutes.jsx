@@ -10,6 +10,7 @@ import UpdateStudent from './GymManagement/SubPages/UpdateStudent'
 import GymPayment from './GymManagement/GymPayment'
 import GymExternalServices from './GymManagement/GymExternalServices'
 import GymFine from './GymManagement/GymFine'
+import AddExternalServices from './GymManagement/SubPages/AddExternalServices'
 
 
 // For academy management system
@@ -30,6 +31,7 @@ const ManagementSystemRoutes = () => {
                     <Route path='view-students' element={<ViewStudent />} />
                     <Route path='payment' element={<GymPayment />} />
                     <Route path='external-services' element={<GymExternalServices />} />
+                    <Route path='add-external-services' element={<AddExternalServices />} />
                     <Route path='fine' element={<GymFine/>} />
                     {/* <Route path='add-attendance' element={<AddAttendance />} />
                     <Route path='view-attendance' element={<ViewAttendance />} /> */}

@@ -14,33 +14,39 @@ const GymDashboard = () => {
 
   const [gymData, setGymData] = useState({
     totalStudents: 0,
-    totalProfit: 0,
+    totalFeeCollected: 0,
     totalLoss: 0,
     externalServices: 0
   })
 
-  // Fetch data dynamically from the server using Axios
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Use Axios to fetch data from the backend
         const response = await axios.get('http://localhost:6969/view-student'); // Adjust the API endpoint accordingly
         const data = response.data;
-
-        // Calculate the necessary values dynamically (for example, profit and loss)
+  
+        console.log(data); // Log to inspect the data structure
+  
+        // Calculate the necessary values dynamically
         const totalStudents = data.length;
-        
-        const totalProfit = data.reduce((sum, student) => {
-          const feePaid = student.feePaid ? parseFloat(student.feePaid) : 0; // Convert to number, default to 0 if undefined or null
-          return sum + feePaid;
+  
+        // Sum the feePaid (converted to number) for all students
+        const totalFeeCollected = data.reduce((sum, student) => {
+          const fee = student.fee ? parseFloat(student.fee) : 0; // Handle case where fee is null or undefined
+          return sum + fee;
         }, 0);
-
-        const totalLoss = data.reduce((sum, student) => sum + student.feeDue, 0);
+  
+        const totalLoss = data.reduce((sum, student) => {
+          // Assuming 'feeDue' or other fields represent the loss, adjust accordingly
+          const feeDue = student.feeDue ? parseFloat(student.feeDue) : 0;
+          return sum + feeDue;
+        }, 0);
+  
         const externalServices = 5; // Example: Fetch or calculate from other data
         
         setGymData({
           totalStudents,
-          totalProfit,
+          totalFeeCollected,
           totalLoss,
           externalServices,
         });
@@ -48,9 +54,11 @@ const GymDashboard = () => {
         console.error('Error fetching gym data:', error);
       }
     };
-
+  
     fetchData();
   }, []);  // Empty dependency array to run only on component mount
+  
+
 
   return (
     <div className="flex">
@@ -60,15 +68,15 @@ const GymDashboard = () => {
       <div className="flex flex-col">
         <WelcomeBar/>
 
-        <div className="flex items-center justify-center mt-3">
+        <div className="flex items-center justify-center gap-16 mt-3">
           <GymCards
             heading={'Total Students'}
             number={gymData.totalStudents}
             title={'Total Students in gym till now.'}
             />
           <GymCards
-            heading={'Total Fee Collected'}
-            number={gymData.totalProfit}
+            heading={'Total Fee Collected/Profit'}
+            number={`Rs. ${gymData.totalFeeCollected}`}
             title={'Total Profit of gym Or you may see total fee collected till now.'}
             />
           <GymCards
@@ -77,7 +85,7 @@ const GymDashboard = () => {
             title={'Total Loss of gym till now.'}
             />
           <GymCards
-            heading={'Total External-Services'}
+            heading={'External-Services'}
             number={gymData.externalServices}
             title={'Total External Services gym has taken till now.'}
             />
