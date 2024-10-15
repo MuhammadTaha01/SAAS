@@ -39,7 +39,7 @@ const Products = () => {
     <div className=''>
       <Navbar />
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center flex-wrap">
         {isAuthenticated ? (
           <>
             <Cards
@@ -58,6 +58,22 @@ const Products = () => {
                           and communicate effectively with parents. This all-in-one solution ensures a structured and organized learning environment.`}
               price={country === 'Pakistan' ? '100Rs' : '500$'}
               onCardClick={() => handleNavigate('academy')}
+            />
+            <Cards
+              heading={'Todo Crescentia'}
+              paragraph={`The Academy Management System is designed to facilitate efficient administration of educational institutes. It manages
+                          student enrollment, attendance, grading, and fee payments with ease. Teachers can track student progress, assign coursework,
+                          and communicate effectively with parents. This all-in-one solution ensures a structured and organized learning environment.`}
+              price={country === 'Pakistan' ? '100Rs' : '500$'}
+              onCardClick={() => handleNavigate('todo')}
+            />
+            <Cards
+              heading={'Resturant Crescentia'}
+              paragraph={`The Academy Management System is designed to facilitate efficient administration of educational institutes. It manages
+                          student enrollment, attendance, grading, and fee payments with ease. Teachers can track student progress, assign coursework,
+                          and communicate effectively with parents. This all-in-one solution ensures a structured and organized learning environment.`}
+              price={country === 'Pakistan' ? '100Rs' : '500$'}
+              onCardClick={() => handleNavigate('resturant')}
             />
           </>
         ) : 
