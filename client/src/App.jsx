@@ -5,7 +5,7 @@ import SystemVersion from './Pages/ManagementSystems/SystemVersion'
 import Products from './Pages/Products'
 import Services from './Pages/Services'
 import AboutUs from './Pages/AboutUs'
-import ContactUs from './Pages/ManagementSystems/ContactUs'
+import ContactUs from './Pages/ContactUs'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
