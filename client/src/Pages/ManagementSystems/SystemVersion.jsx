@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Cards from '../../CommonComponents/Cards'
 import Navbar from '../../Components/Navbar'
 import Footer from '../../Components/Footer'
@@ -14,6 +14,11 @@ const SystemVersion = () => {
         navigate(`/products/${system}/${version}/dashboard`)
         console.log(system, version);
     }
+
+    useEffect(()=>
+    {
+        window.scrollTo(0,0);
+    },[])
 
   return (
     <div className=''>
