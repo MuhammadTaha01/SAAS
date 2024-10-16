@@ -23,7 +23,7 @@ const SystemVersion = () => {
   return (
     <div className=''>
         <Navbar/>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center flex-wrap">
             <Cards
                 heading={'🌟 Basic Plan'}
                 paragraph={`Kickstart your journey with the essentials! Enjoy foundational features that help you manage
