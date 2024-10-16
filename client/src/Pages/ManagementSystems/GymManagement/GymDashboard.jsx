@@ -68,27 +68,27 @@ const GymDashboard = () => {
       <div className="flex flex-col">
         <WelcomeBar/>
 
-        <div className="flex items-center justify-center gap-16 mt-3">
+        <div className="flex gap-16 mt-3 mx-10">
           <GymCards
             heading={'Total Students'}
             number={gymData.totalStudents}
             title={'Total Students in gym till now.'}
-            />
+          />
           <GymCards
             heading={'Total Fee Collected/Profit'}
             number={`Rs. ${gymData.totalFeeCollected}`}
             title={'Total Profit of gym Or you may see total fee collected till now.'}
-            />
+          />
           <GymCards
             heading={'Total Loss'}
             number={gymData.totalLoss}
             title={'Total Loss of gym till now.'}
-            />
+          />
           <GymCards
             heading={'External-Services'}
             number={gymData.externalServices}
             title={'Total External Services gym has taken till now.'}
-            />
+          />
           <GymCards
             heading={'Current Plan'}
             number={version}
@@ -96,11 +96,28 @@ const GymDashboard = () => {
           />
         </div>
 
-        <div className="flex gap-28 mx-10 mt-5">
-          {/* This is chart section */}
-          <Pie/>
-          <Line/>
-          <Radar/>
+        <div className="flex flex-col mx-10 mt-5">
+          <div className="font-semibold my-2">
+            Your Gym <span className='text-purple-700 hover:underline'>MRR(Monthly Recurring Revenue)</span>
+          </div>
+          <div className="flex gap-28">
+            {/* This is chart section */}
+            <Pie/>
+            <Line/>
+            <Radar/>
+          </div>
+        </div>
+
+        <div className="flex flex-col mx-10 mt-5">
+          <div className="font-semibold my-2">
+            Your Gym <span className='text-purple-700 hover:underline'>ARR(Annualy Recurring Revenue)</span>
+          </div>
+          <div className="flex gap-28">
+            {/* This is chart section */}
+            <Pie/>
+            <Line/>
+            <Radar/>
+          </div>
         </div>
 
       </div>
