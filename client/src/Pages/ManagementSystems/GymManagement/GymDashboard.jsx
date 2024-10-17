@@ -5,6 +5,10 @@ import GymCards from './GymComponents/GymCards'
 import Pie from '../GymManagement/GymComponents/GymPieChart'
 import Line from '../GymManagement/GymComponents/GymLineChart'
 import Radar from '../GymManagement/GymComponents/GymRadarChart'
+import BarChart from '../GymManagement/GymComponents/GymBarChart'
+import StackedBarChart from './GymComponents/GymStackedBarChart'
+import StackedBarLineChart from './GymComponents/GymStackedBarLineChart'
+import TimeScaleComboChart from './GymComponents/RadarChartMultiple'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -112,11 +116,12 @@ const GymDashboard = () => {
           <div className="font-semibold my-2">
             Your Gym <span className='text-green-500 hover:underline'>ARR(Annualy Recurring Revenue)</span>
           </div>
-          <div className="flex gap-28">
+          <div className="flex gap-5">
             {/* This is chart section */}
-            <Pie/>
-            <Line/>
-            <Radar/>
+            <BarChart/>
+            <StackedBarChart/>
+            <StackedBarLineChart/>
+            <TimeScaleComboChart/>
           </div>
         </div>
 
