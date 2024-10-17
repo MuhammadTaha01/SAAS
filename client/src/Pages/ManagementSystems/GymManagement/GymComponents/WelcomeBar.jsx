@@ -38,7 +38,7 @@ const WelcomeBar = () => {
     },[])
 
     return (
-        <div className='mx-10 mt-3 flex gap-60 items-center justify-center'>
+        <div className='mx-10 mt-3 flex gap-56 items-center justify-center'>
             
             <div className="whitespace-nowrap">
                 <h1>Welcome - <span className='font-semibold'>{user?.name}</span>👋</h1>
