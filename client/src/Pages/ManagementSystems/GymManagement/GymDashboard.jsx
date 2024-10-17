@@ -102,7 +102,7 @@ const GymDashboard = () => {
 
         <div className="flex flex-col mx-10 mt-1">
           <div className="font-semibold my-2">
-            Your Gym <span className='text-purple-600 hover:underline'>MRR(Monthly Recurring Revenue)</span>
+            Your Gym <span className='text-purple-600 hover:underline hover:text-purple-700'>MRR(Monthly Recurring Revenue)</span>
           </div>
           <div className="flex gap-24">
             {/* This is chart section */}
@@ -114,7 +114,7 @@ const GymDashboard = () => {
 
         <div className="flex flex-col mx-10 mt-1 mb-3">
           <div className="font-semibold my-2">
-            Your Gym <span className='text-green-500 hover:underline'>ARR(Annualy Recurring Revenue)</span>
+            Your Gym <span className='text-green-600 hover:underline hover:text-green-700'>ARR(Annualy Recurring Revenue)</span>
           </div>
           <div className="flex gap-5">
             {/* This is chart section */}
