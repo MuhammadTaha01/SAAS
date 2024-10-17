@@ -72,7 +72,7 @@ const GymDashboard = () => {
       <div className="flex flex-col">
         <WelcomeBar/>
 
-        <div className="flex gap-16 mt-4 mx-10">
+        <div className="flex gap-14 mt-4 mx-10">
           <GymCards
             heading={'Total Students'}
             number={gymData.totalStudents}
@@ -104,7 +104,7 @@ const GymDashboard = () => {
           <div className="font-semibold my-2">
             Your Gym <span className='text-purple-600 hover:underline'>MRR(Monthly Recurring Revenue)</span>
           </div>
-          <div className="flex gap-28">
+          <div className="flex gap-24">
             {/* This is chart section */}
             <Pie/>
             <Line/>
