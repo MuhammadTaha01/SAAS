@@ -3,7 +3,7 @@ import Sidebar from './GymComponents/Sidebar'
 
 const GymStudentAttendance = () => {
   return (
-    <div className=''>
+    <div className='flex'>
         <Sidebar/>
         GymStudentAttendance
     </div>
