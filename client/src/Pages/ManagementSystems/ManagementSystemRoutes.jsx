@@ -35,6 +35,7 @@ const ManagementSystemRoutes = () => {
                     <Route path='add-external-services' element={<AddExternalServices />} />
                     <Route path='fine' element={<GymFine/>} />
                     <Route path='ai-diet-plan' element={<GymAiDietPlan />} />
+                    <Route path='students-attendance' element={<GymAiDietPlan />} />
                     {/* <Route path='add-attendance' element={<AddAttendance />} />
                     <Route path='view-attendance' element={<ViewAttendance />} /> */}
                     <Route path='fee-status' element={<GymFeeStatus />} />
