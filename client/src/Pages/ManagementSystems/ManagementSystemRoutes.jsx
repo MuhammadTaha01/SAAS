@@ -12,6 +12,7 @@ import GymExternalServices from './GymManagement/GymExternalServices'
 import GymFine from './GymManagement/GymFine'
 import AddExternalServices from './GymManagement/SubPages/AddExternalServices'
 import GymAiDietPlan from './GymManagement/GymAiDietPlan'
+import GymStudentAttendance from './GymManagement/GymStudentAttendance'
 
 
 // For academy management system
@@ -35,7 +36,7 @@ const ManagementSystemRoutes = () => {
                     <Route path='add-external-services' element={<AddExternalServices />} />
                     <Route path='fine' element={<GymFine/>} />
                     <Route path='ai-diet-plan' element={<GymAiDietPlan />} />
-                    <Route path='students-attendance' element={<GymAiDietPlan />} />
+                    <Route path='students-attendance' element={<GymStudentAttendance />} />
                     {/* <Route path='add-attendance' element={<AddAttendance />} />
                     <Route path='view-attendance' element={<ViewAttendance />} /> */}
                     <Route path='fee-status' element={<GymFeeStatus />} />
