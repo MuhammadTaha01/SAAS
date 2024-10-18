@@ -76,97 +76,43 @@ const Add = () => {
           <div className="flex items-center flex-wrap bg-gray-100 justify-center mt-5 border-[3px] rounded-xl border-gray-800 mx-10 p-2 gap-8 hover:bg-gray-200">
             <form className='flex gap-8 flex-wrap items-center justify-center'>
               <div className="flex flex-col">
-                <label className='font-semibold'>Student Name:</label>
+                <label className='font-semibold'>External Service Name:</label>
                 <input
                   required
                   type="text" 
-                  name="student_name"
+                  name="external_servicename"
                 //   value={values.student_name}
-                  placeholder='Taha,Ali...'
-                  className='border-gray-500 border-[2px] rounded-xl p-1'
+                  placeholder='Website/Mobile App/Other Gym Accessories'
+                  className='border-gray-500 border-[2px] rounded-xl w-[400px] p-1'
                   onChange={(e) => setValues({...values, student_name:e.target.value})}
                 />
               </div>
 
               <div className="flex flex-col">
-                <label className='font-semibold'>Student G-mail: (Optional)</label>
+                <label className='font-semibold'>Service Type: (Optional)</label>
                 <input
                   type="text" 
-                  name="mail"
+                  name="external_servicetype"
                 //   value={values.student_mail}
-                  placeholder='xyz@gmail.com' 
-                  className='border-gray-500 border-[2px] rounded-xl p-1'
+                  placeholder='web/app/equipment/paint' 
+                  className='border-gray-500 border-[2px] rounded-xl w-[400px] p-1'
                   onChange={(e) => setValues({...values, student_mail:e.target.value})}
                 />
               </div>
 
               <div className="flex flex-col">
-                <label className='font-semibold'>Student Address:</label>
+                <label className='font-semibold'>Service Fee:</label>
                 <input
                   required
                   type="text"
-                  name="student_address"
+                  name="external_servicefee"
                 //   value={values.student_address}
-                  placeholder='Street | City' 
+                  placeholder='Fee' 
                   className='border-gray-500 border-[2px] rounded-xl p-1'
                   onChange={(e) => setValues({...values, student_address:e.target.value})}
                 />
               </div>
-
-              <div className="flex flex-col">
-                <label className='font-semibold'>Student Contact # 01:</label>
-                <input
-                  required
-                  type="text" 
-                  name="student_contact1"
-                //   value={values.student_contact1}
-                  placeholder='+XX XXXXXXXXXXX' 
-                  className='border-gray-500 border-[2px] rounded-xl p-1'
-                  onChange={(e) => setValues({...values, student_contact1:e.target.value})}
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label className='font-semibold'>Student Contact # 02: (Optional)</label>
-                <input 
-                  type="text" 
-                  name="student_contact2"
-                //   value={values.student_contact2}
-                  placeholder='+XX XXXXXXXXXXX' 
-                  className='border-gray-500 border-[2px] rounded-xl p-1'
-                  onChange={(e) => setValues({...values, student_contact2:e.target.value})}
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label className='font-semibold'>Fee:</label>
-                <input
-                  required
-                  type="text" 
-                  name="fee"
-                //   value={values.fee}
-                  placeholder='12345' 
-                  className='border-gray-500 border-[2px] rounded-xl p-1'
-                  onChange={(e) => setValues({...values, fee:e.target.value})}
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label className='font-semibold'>Student Gender:</label>
-                <select
-                  required
-                  name="student_gender"
-                //   value={values.student_gender}
-                  className='border-[2px] border-gray-950'
-                  onChange={(e) => setValues({...values, student_gender:e.target.value})}
-                >
-                  <option value="" disabled selected>Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-
-              <button className='font-semibold w-full text-[15px] mx-10 bg-gray-400 text-gray-800 border-[1px] border-gray-800 rounded-xl px-5 p-1 hover:text-gray-700 hover:bg-gray-300 hover:transition-all duration-200'>Add Student</button>
+              <button className='font-semibold w-full text-[15px] mx-10 bg-gray-400 text-gray-800 border-[1px] border-gray-800 rounded-xl px-5 p-1 hover:text-gray-700 hover:bg-gray-300 hover:transition-all duration-200'>Add External Service</button>
             </form>
 
           </div>
