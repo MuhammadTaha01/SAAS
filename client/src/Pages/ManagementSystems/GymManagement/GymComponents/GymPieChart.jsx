@@ -12,8 +12,8 @@ const PieChart = () => {
       {
         label: 'Gym Activities',
         data: [12, 19],
-        backgroundColor: ['#FF6384', '#36A2EB'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+        backgroundColor: ['#6bd392', '#9f46ed'],
+        hoverBackgroundColor: ['#6bd392cf', '#9f46edc2'],
       },
     ],
   };

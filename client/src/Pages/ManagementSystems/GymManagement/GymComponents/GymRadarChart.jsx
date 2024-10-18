@@ -12,8 +12,8 @@ const RadarChart = () => {
       {
         label: 'Gym Member Performance',
         data: [65, 59, 90, 81, 56],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: '#9f46ed7d',
+        borderColor: '#400077',
         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
