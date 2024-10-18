@@ -87,6 +87,17 @@ const Sidebar = () => {
                   View Students
                 </button>
               </Link>
+
+              <Link to={`/products/${system}/${version}/students-attendance`} className='flex flex-col'>
+                <button
+                  className={`mx-1 font-semibold text-[17px] p-2 my-2 rounded-xl hover:transition-all hover:duration-200 ${
+                    selectedOption === 'students-attendance' ? 'bg-blue-500 text-white' : 'text-blue-900 hover:bg-blue-500 hover:text-white'
+                  }`}
+                  onClick={() => handleSelection('students-attendance')}
+                  >
+                  Students Attendance
+                </button>
+              </Link>
             </div>
           )}
 
