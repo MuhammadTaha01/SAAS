@@ -40,6 +40,28 @@ router.put('/update_fee_status_students/:id', (req, res) => {
     });
 });
 
+// Update student fee status
+router.put('/update_fine/:id', (req, res) => {
+    const { id } = req.params;
+    const { fine } = req.body;
+
+    // Update student fee in the MySQL database
+    const sql = 'UPDATE gym_addstudents SET fine = ? WHERE id = ?';
+
+    db.query(sql, [fine, id], (err, result) => {
+        if (err) {
+            console.error('Error updating student fine:', err);
+            return res.status(500).send('Error updating student fine');
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Student not found');
+        }
+
+        res.status(200).json({ message: 'Student fine updated successfully' });
+    });
+});
+
 
 
 // Update student
