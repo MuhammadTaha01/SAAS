@@ -26,11 +26,26 @@ const GymFine = () => {
     }));
   };
 
+  const handleFineSubmit = (id) => {
+    const fineAmount = fineAmounts[id] || 0;  // Get fine amount for the specific student
+
+    // API call to update fine in the database
+    axios.put(`http://localhost:6969/update_fine/${id}`, { fine: fineAmount })
+      .then(res => {
+        alert(`Fine of ${fineAmount} saved for student ID: ${id}`);
+        window.location.reload();
+      })
+      .catch(err => {
+        console.error('Error updating fine:', err);
+        alert('Error saving fine');
+      });
+  };
+
   // Define columns for the DataTable
   const columns = [
     { name: 'ID', selector: row => row.id, sortable: true, width: '80px' },
     { name: 'Student Name', selector: row => row.student_name || 'N/A', sortable: true, width: '200px' },
-    { name: 'Fee', selector: row => row.fee || 'Not Updated', sortable: true, width: '200px' },
+    { name: 'Fee', selector: row => row.fee || 'Not Updated', sortable: true, width: '150px' },
     { name: 'Fee Status', selector: row => row.fee_status || 'Not Updated', sortable: true, width: '150px' },
     { name: 'Fine', selector: row => row.fine || 'Not Fined Yet', sortable: true, width: '150px' },
     {
@@ -51,8 +66,8 @@ const GymFine = () => {
       name: 'Action',
       cell: row => (
         <button
-          className="bg-red-500 font-semibold text-white px-5 py-1 rounded-2xl"
-          onClick={() => alert(`Fining student ${row.student_name}`)}
+          className="bg-red-700 font-semibold text-white p-2 px-5 rounded-2xl"
+          onClick={() => handleFineSubmit(row.id)}
         >
           Fine
         </button>
