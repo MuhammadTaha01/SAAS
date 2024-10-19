@@ -29,7 +29,7 @@ const AddExternalServices = () => {
       });
 
       navigate(`/products/${system}/${version}/external-services`);
-      // window.location.reload();
+      window.location.reload();
 
       console.log(`Service Name: ${values.service_name} | Mail: ${values.service_type} | Address: ${values.service_fee}`);
   };

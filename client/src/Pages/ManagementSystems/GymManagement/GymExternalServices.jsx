@@ -5,10 +5,12 @@ import axios from 'axios'
 import DataTable from 'react-data-table-component'
 
 
-const GymAddStudent = () => {
+const GymExternalService = () => {
 
   const { system, version } = useParams();
   const [ externalServicesData, setExternalServicesData ] = useState([])
+  const [filteredData, setFilteredData] = useState([]); // <-- Missing state declaration
+
 
   useEffect(() => {
       axios.get('http://localhost:6969/gym_externalservices') 
@@ -17,6 +19,22 @@ const GymAddStudent = () => {
         })
         .catch(err => console.log(err))
   },[])
+
+
+
+  const handleDelete = (id) => {
+  if (window.confirm('Are you sure you want to delete this service?')) {
+    axios.delete(`http://localhost:6969/delete-service/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        // Update the state after successful deletion
+        setExternalServicesData((prevData) => prevData.filter(service => service.id !== id));
+      })
+      .catch((err) => console.log(err));
+  }
+};
+  
+
 
   const columns = [
     { name: 'ID', selector: row => row.id, sortable: true, width: '70px' },
@@ -43,9 +61,32 @@ const GymAddStudent = () => {
       selector: row => row.service_startedtime || 'NULL', 
       width: '200px',
       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.service_startedtime ? new Date(row.service_startedtime).toLocaleDateString() : 'NULL'}</div>
+    },
+    {
+      name: 'Actions',
+      width: '150px',
+      cell: row => (
+        <div className="flex gap-2" style={{ whiteSpace: 'normal' }}>
+          <Link to={`/products/${system}/${version}/update/${row.id}`}>
+            <button
+              className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-purple-200 bg-purple-800 hover:bg-purple-600"
+              onClick={() => handleUpdate(row.id)}
+              >
+              Update
+            </button>
+          </Link>
+          <button
+            className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-red-200 bg-red-800 hover:bg-red-600"
+            onClick={() => handleDelete(row.id)}
+          >
+            Delete
+          </button>
+        </div>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
     }
-      // ignoreRowClick: true,
-      // allowOverflow: true,
 ];
 
 
@@ -134,4 +175,4 @@ const GymAddStudent = () => {
   )
 }
 
-export default GymAddStudent;
+export default GymExternalService;
