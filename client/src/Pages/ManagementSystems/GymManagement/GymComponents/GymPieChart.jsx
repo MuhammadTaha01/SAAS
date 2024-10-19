@@ -5,13 +5,13 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 // Register components
 Chart.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
+const PieChart = ({ profit, loss }) => {
   const data = {
     labels: ['Profit', 'Loss'],
     datasets: [
       {
         label: 'Gym Activities',
-        data: [12, 19],
+        data: [profit, loss],
         backgroundColor: ['#6bd392', '#9f46ed'],
         hoverBackgroundColor: ['#6bd392cf', '#9f46edc2'],
       },

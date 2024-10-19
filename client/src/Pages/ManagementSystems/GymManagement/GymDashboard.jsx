@@ -123,7 +123,10 @@ const GymDashboard = () => {
           </div>
           <div className="flex gap-24">
             {/* This is chart section */}
-            <Pie/>
+            <Pie 
+              profit={gymData.totalFeeCollected} 
+              loss={gymData.totalLoss} 
+            />
             <Line/>
             <Radar/>
           </div>
