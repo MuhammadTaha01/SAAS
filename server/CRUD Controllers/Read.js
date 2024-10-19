@@ -32,6 +32,22 @@ router.get('/view-student',(req,res) => {
 
 
 
+router.get('/gym_externalservices', (req, res) => {
+  const sql = 'SELECT * FROM gym_externalservices';
+  
+  db.query(sql, (err, result) => {
+      if (err) {
+          console.error('Error fetching external services: ', err);
+          return res.status(500).send('Error fetching external services');
+      } else {
+          return res.status(200).json(result);
+      }
+  });
+});
+
+
+
+
 // Get student by ID
 router.get('/get-student/:id', (req, res) => {
     const { id } = req.params;

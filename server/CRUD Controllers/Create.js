@@ -60,7 +60,7 @@ router.post('/add_students',(req,res) => {
 
 
 router.post('/add_externalservices',(req,res) => {
-    const sql = 'INSERT INTO `add_externalservices` (service_name, service_type, service_fee) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO `gym_externalservices` (service_name, service_type, service_fee) VALUES (?, ?, ?)';
     const { service_name, service_type, service_fee } = req.body;
 
     db.query(sql,[ service_name, service_type, service_fee ], (err,result) => {
