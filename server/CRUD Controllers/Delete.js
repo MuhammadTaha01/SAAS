@@ -34,4 +34,23 @@ router.delete('/delete-student/:id', (req, res) => {
 
 
 
+router.delete('/delete-service/:id', (req, res) => {
+    const serviceId = req.params.id; // Correctly use serviceId
+    const sql = 'DELETE FROM `gym_externalservices` WHERE id = ?';
+    
+    db.query(sql, [serviceId], (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err); // Log the error
+            return res.status(500).json({ message: 'Error in deleting service', error: err.message });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Service not found' }); // Handle case where no rows were deleted
+        }
+        return res.status(200).json({ message: 'Service deleted successfully' });
+    });
+});
+
+
+
+
 export default router;
