@@ -20,39 +20,56 @@ const GymDashboard = () => {
     totalStudents: 0,
     totalFeeCollected: 0,
     totalLoss: 0,
-    externalServices: 0
-  })
+    externalServices: 0,
+    externalServicesCost: 0 // New field for the total cost of external services
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:6969/view-student'); // Adjust the API endpoint accordingly
-        const data = response.data;
+        // Fetch student data
+        const studentResponse = await axios.get('http://localhost:6969/view-student');
+        const studentData = studentResponse.data;
+        console.log('Student Data:', studentData);  // Log student data
   
-        console.log(data); // Log to inspect the data structure
-  
-        // Calculate the necessary values dynamically
-        const totalStudents = data.length;
-  
-        // Sum the feePaid (converted to number) for all students
-        const totalFeeCollected = data.reduce((sum, student) => {
-          const fee = student.fee ? parseFloat(student.fee) : 0; // Handle case where fee is null or undefined
+        // Calculate total students and fee collected
+        const totalStudents = studentData.length;
+        const totalFeeCollected = studentData.reduce((sum, student) => {
+          const fee = student.fee ? parseFloat(student.fee) : 0;
           return sum + fee;
         }, 0);
   
-        const totalLoss = data.reduce((sum, student) => {
-          // Assuming 'feeDue' or other fields represent the loss, adjust accordingly
+        // Calculate total loss from student data (feeDue)
+        const studentLoss = studentData.reduce((sum, student) => {
           const feeDue = student.feeDue ? parseFloat(student.feeDue) : 0;
           return sum + feeDue;
         }, 0);
+        console.log('Student Loss (feeDue):', studentLoss);  // Log student loss
   
-        const externalServices = 5; // Example: Fetch or calculate from other data
-        
+        // Fetch external services data
+        const externalServicesResponse = await axios.get('http://localhost:6969/gym_externalservices');
+        const externalServicesData = externalServicesResponse.data;
+        console.log('External Services Data:', externalServicesData);  // Log external services data
+  
+        // Calculate total number of external services and total cost
+        const totalExternalServices = externalServicesData.length;
+        const totalExternalServicesCost = externalServicesData.reduce((sum, service) => {
+          const serviceCost = service.service_fee ? parseFloat(service.service_fee) : 0;  // Use correct field
+          return sum + serviceCost;
+        }, 0);
+        console.log('External Services Cost:', totalExternalServicesCost);  // Log external services cost
+  
+        // Calculate total loss (student feeDue + external service costs)
+        const totalLoss = studentLoss + totalExternalServicesCost;
+        console.log('Total Loss:', totalLoss);  // Log the combined total loss
+  
+        // Update gymData state with the new values
         setGymData({
           totalStudents,
           totalFeeCollected,
-          totalLoss,
-          externalServices,
+          totalLoss, // Updated total loss with studentLoss and external service costs
+          externalServices: totalExternalServices,
+          externalServicesCost: totalExternalServicesCost
         });
       } catch (error) {
         console.error('Error fetching gym data:', error);
@@ -61,7 +78,7 @@ const GymDashboard = () => {
   
     fetchData();
   }, []);  // Empty dependency array to run only on component mount
-  
+   
 
 
   return (
@@ -85,7 +102,7 @@ const GymDashboard = () => {
           />
           <GymCards
             heading={'Total Loss'}
-            number={gymData.totalLoss}
+            number={`Rs. ${gymData.totalLoss}`}
             title={'Total Loss of gym till now.'}
           />
           <GymCards
