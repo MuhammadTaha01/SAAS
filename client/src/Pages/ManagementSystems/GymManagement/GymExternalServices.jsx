@@ -11,66 +11,42 @@ const GymAddStudent = () => {
   const [ externalServicesData, setExternalServicesData ] = useState([])
 
   useEffect(() => {
-      axios.get('http://localhost:6969/external-services') 
+      axios.get('http://localhost:6969/gym_externalservices') 
         .then(res => {
           setExternalServicesData(res.data);
         })
         .catch(err => console.log(err))
   },[])
 
-//   const columns = [
-//     { name: 'ID', selector: row => row.id, sortable: true, width: '70px' },
-//     { 
-//       name: 'Student Name', 
-//       selector: row => row.student_name || 'NULL', 
-//       width: '120px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_name || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'G-mail', 
-//       selector: row => row.student_mail || 'NULL', 
-//       width: '200px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_mail || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'Address', 
-//       selector: row => row.student_address || 'NULL', 
-//       width: '200px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_address || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'Contact #01', 
-//       selector: row => row.student_contact1 || 'NULL', 
-//       width: '150px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_contact1 || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'Contact #02', 
-//       selector: row => row.student_contact2 || 'NULL', 
-//       width: '150px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_contact2 || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'Gender', 
-//       selector: row => row.student_gender || 'NULL', 
-//       width: '100px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.student_gender || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'Fee', 
-//       selector: row => row.fee || 'NULL', 
-//       width: '80px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.fee || 'NULL'}</div>
-//     },
-//     { 
-//       name: 'Date Of Joining', 
-//       selector: row => row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL', 
-//       width: '150px',
-//       cell: row => <div style={{ whiteSpace: 'normal' }}>{row.Date_of_joining ? new Date(row.Date_of_joining).toLocaleDateString() : 'NULL'}</div>
-//     }
-//       // ignoreRowClick: true,
-//       // allowOverflow: true,
-// ];
+  const columns = [
+    { name: 'ID', selector: row => row.id, sortable: true, width: '70px' },
+    { 
+      name: 'Service Name: ', 
+      selector: row => row.service_name || 'NULL', 
+      width: '150px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.service_name || 'NULL'}</div>
+    },
+    { 
+      name: 'Service Type: ', 
+      selector: row => row.service_type || 'NULL', 
+      width: '200px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.service_type || 'NULL'}</div>
+    },
+    { 
+      name: 'Service Fee: ', 
+      selector: row => row.service_fee || 'NULL', 
+      width: '200px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.service_fee || 'NULL'}</div>
+    },
+    { 
+      name: 'Service Taking Date: ', 
+      selector: row => row.service_startedtime || 'NULL', 
+      width: '200px',
+      cell: row => <div style={{ whiteSpace: 'normal' }}>{row.service_startedtime ? new Date(row.service_startedtime).toLocaleDateString() : 'NULL'}</div>
+    }
+      // ignoreRowClick: true,
+      // allowOverflow: true,
+];
 
 
   const customStyles = {
@@ -101,51 +77,55 @@ const GymAddStudent = () => {
           <button className='font-semibold text-[15px] mx-10 bg-gray-400 text-gray-800 border-[1px] border-gray-800 rounded-xl px-5 p-1 hover:text-gray-700 hover:bg-gray-300 hover:transition-all duration-200'>Add External Services</button>
         </Link>
 
-        {/* <div className="flex items-center justify-center mt-5 mx-10"> */}
-              {/* <table className='border-collapse border border-gray-500'>
+        <div className="flex items-center justify-center mt-5 mx-10">
+               {/* <table className='border-collapse border border-gray-500'>
                 <thead>
                   <tr>
-                    <th className='border border-gray-500 p-2'>id</th>
-                    <th className='border border-gray-500 p-2'>Student Name</th>
-                    <th className='border border-gray-500 p-2'>G-mail</th>
-                    <th className='border border-gray-500 p-2'>Address</th>
-                    <th className='border border-gray-500 p-2'>Contact # 01 </th>
-                    <th className='border border-gray-500 p-2'>Contact # 02 </th>
-                    <th className='border border-gray-500 p-2'>Gender</th>
-                    <th className='border border-gray-500 p-2'>Date Of Joining</th>
+                    <th className='border border-gray-500 p-2'>ID</th>
+                    <th className='border border-gray-500 p-2'>External Service Name: </th>
+                    <th className='border border-gray-500 p-2'>Service Type: </th>
+                    <th className='border border-gray-500 p-2'>Service Fee: </th>
+                    <th className='border border-gray-500 p-2'>Date Of taking this service: </th>
                   </tr>
                 </thead> */}
 
-                {/* <div className="mx-10 mt-5">
+                <div className="">
+                  <marquee behavior="" direction="" scrollamount='10'
+                    style={{
+                      marginRight: '20px',
+                      backgroundColor: '#f0f0f0', // Light gray background
+                      color: '#ff0000',           // Red text color
+                      fontSize: '16px',           // Semi-bold font size
+                      fontWeight: '600',          // For semi-bold text
+                      padding: '10px'             // Optional: add some padding for better spacing
+                    }}
+                  >Note: Any Services added in external services section will be considered as liability. And will be treated as a *Loss*</marquee>
                   <DataTable
                     columns={columns}
-                    data={studentData}
+                    data={externalServicesData}
                     responsive
                     pagination
                     customStyles={customStyles}
                     highlightOnHover
                     selectableRows={false}
                   />
-                </div> */}
+                </div>
 
                 {/* <tbody>
-                  {studentData.map((student,index) => {
+                  {externalServicesData.map((externalServices,index) => {
                     return(
                         <tr key={index}>
-                        <td className='border border-gray-500 p-2'>{student.id}</td>
-                        <td className='border border-gray-500 p-2'>{student.student_name || 'NULL'}</td>
-                        <td className='border border-gray-500 p-2'>{student.student_mail || 'NULL'}</td>
-                        <td className='border border-gray-500 p-2'>{student.student_address || 'NULL'}</td>
-                        <td className='border border-gray-500 p-2'>{student.student_contact1 || 'NULL'}</td>
-                        <td className='border border-gray-500 p-2'>{student.student_contact2 || 'NULL'}</td>
-                        <td className='border border-gray-500 p-2'>{student.student_gender || 'NULL'}</td>
-                        <td className='border border-gray-500 p-2'>{student.Date_of_joining || 'NULL'}</td>
+                        <td className='border border-gray-500 p-2'>{externalServices.id}</td>
+                        <td className='border border-gray-500 p-2'>{externalServices.service_name || 'NULL'}</td>
+                        <td className='border border-gray-500 p-2'>{externalServices.service_type || 'NULL'}</td>
+                        <td className='border border-gray-500 p-2'>{externalServices.service_fee || 'NULL'}</td>
+                        <td className='border border-gray-500 p-2'>{externalServices.service_startedtime || 'NULL'}</td>
                       </tr>
                     );
                   })}
                 </tbody>
-              </table> */}
-          {/* </div> */}
+              </table>  */}
+          </div>
 
       </div>
     
@@ -154,4 +134,4 @@ const GymAddStudent = () => {
   )
 }
 
-export default GymAddStudent
+export default GymAddStudent;
