@@ -91,10 +91,21 @@ const GymFine = () => {
         <Sidebar/>
         
         <div className="flex flex-col">
-          <div className="flex justify-between mx-10 mt-2">
+          <div className="flex justify-between mx-10">
             <input type="text" placeholder='Search By Name...' className='border-black border-[2px] rounded-xl p-1 px-5 m-2' onChange={handleChange}/>
           </div>
           <div className="w-full mx-10">
+              <marquee behavior="" direction="" scrollamount='13'
+                style={{
+                  marginRight: '20px',
+                  backgroundColor: '#f0f0f0', // Light gray background
+                  color: '#ff0000',           // Red text color
+                  fontSize: '16px',           // Semi-bold font size
+                  fontWeight: '600',          // For semi-bold text
+                  padding: '3px',            // Optional: add some padding for better spacing,
+                  marginTop: '5px'
+                }}
+              >Note: Any Student having fine, will not be considered as a profit or loss. It will be the gym's internal matter.</marquee>
             <DataTable
               columns={columns}
               data={filteredData}

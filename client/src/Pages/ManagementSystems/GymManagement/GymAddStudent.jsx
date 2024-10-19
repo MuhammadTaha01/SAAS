@@ -96,7 +96,7 @@ const GymAddStudent = () => {
     <div className='flex'>
       <Sidebar/>
 
-      <div className="mt-10">
+      <div className="mt-5 mx-10">
         <Link to={`/products/${system}/${version}/add`}>
           <button className='font-semibold text-[15px] mx-10 bg-green-400 text-green-800 border-[1px] border-green-800 rounded-xl px-5 p-1 hover:text-green-700 hover:bg-green-300 hover:transition-all duration-200'>Add Student</button>
         </Link>
@@ -116,7 +116,18 @@ const GymAddStudent = () => {
                   </tr>
                 </thead> */}
 
-                <div className="mx-10 mt-5">
+                <marquee behavior="" direction="" scrollamount='13'
+                    style={{
+                      marginRight: '20px',
+                      backgroundColor: '#f0f0f0', // Light gray background
+                      color: '#0c8700',           // Red text color
+                      fontSize: '16px',           // Semi-bold font size
+                      fontWeight: '600',          // For semi-bold text
+                      padding: '5px',            // Optional: add some padding for better spacing,
+                      marginTop: '5px'
+                    }}
+                  >Note: Any Student added here, will be considered as a *Profit*</marquee>
+                <div className="mt-1">
                   <DataTable
                     columns={columns}
                     data={studentData}
