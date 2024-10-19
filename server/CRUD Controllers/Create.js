@@ -59,6 +59,26 @@ router.post('/add_students',(req,res) => {
 
 
 
+router.post('/add_externalservices',(req,res) => {
+    const sql = 'INSERT INTO `add_externalservices` (service_name, service_type, service_fee) VALUES (?, ?, ?)';
+    const { service_name, service_type, service_fee } = req.body;
+
+    db.query(sql,[ service_name, service_type, service_fee ], (err,result) => {
+        if(err)
+            {
+                console.error('Error inserting in database: ',err);
+                return res.status(500).send('Error inserting external services');
+            }
+            else
+            {
+                console.log('External Services added successfully');
+                return res.status(200).send('services added')
+            }
+    })
+})
+
+
+
 
 // router.post('/add_attendance',(req,res) => {
 //     const sql = 'INSERT INTO `gym_addstudents` (attendance) VALUES (?)';
