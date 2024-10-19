@@ -192,7 +192,7 @@ const GymViewStudent = () => {
       width: '150px',
       cell: row => (
         <div className="flex gap-2" style={{ whiteSpace: 'normal' }}>
-          <Link to={`/products/${system}/${version}/update/${row.id}`}>
+          <Link to={`/products/${system}/${version}/update-students/${row.id}`}>
             <button
               className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-purple-200 bg-purple-800 hover:bg-purple-600"
               onClick={() => handleUpdate(row.id)}
