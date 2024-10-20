@@ -21,8 +21,11 @@ const GymDashboard = () => {
     totalFeeCollected: 0,
     totalLoss: 0,
     externalServices: 0,
-    externalServicesCost: 0 // New field for the total cost of external services
+    externalServicesCost: 0,
+    monthlyProfits: Array(12).fill(0), // Monthly profits
+    monthlyLosses: Array(12).fill(0),  // Monthly losses
   });
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +34,23 @@ const GymDashboard = () => {
         const studentResponse = await axios.get('http://localhost:6969/view-student');
         const studentData = studentResponse.data;
         console.log('Student Data:', studentData);  // Log student data
+
+        // ... existing fetch logic
+        const monthlyProfits = Array(12).fill(0);
+        const monthlyLosses = Array(12).fill(0);
+
+        // Sample logic to fill monthly profits/losses
+        studentData.forEach(student => {
+          const monthIndex = new Date(student.date).getMonth(); // assuming 'date' is a field in your data
+          monthlyProfits[monthIndex] += student.fee; // or whatever logic you use
+          monthlyLosses[monthIndex] += student.feeDue; // similar logic for losses
+        });
+
+        setGymData(prevState => ({
+          ...prevState,
+          monthlyProfits,
+          monthlyLosses,
+        }));
   
         // Calculate total students and fee collected
         const totalStudents = studentData.length;
@@ -127,7 +147,10 @@ const GymDashboard = () => {
               profit={gymData.totalFeeCollected} 
               loss={gymData.totalLoss} 
             />
-            <StackedBarLineChart/>
+            <StackedBarLineChart 
+                monthlyProfits={gymData.monthlyProfits || []} 
+                monthlyLosses={gymData.monthlyLosses || []} 
+            />
             <Radar/>
           </div>
         </div>

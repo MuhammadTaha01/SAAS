@@ -13,23 +13,23 @@ import {
 // Register components
 Chart.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-const LineChart = () => {
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+const LineChart = ({ data, labels }) => {
+  const chartData = {
+    labels: labels, // Use the passed labels
     datasets: [
       {
         label: 'Progress Over Time',
-        data: [10,30,50,70,90,100],
+        data: data, // Use the passed data
         fill: false,
         borderColor: '#4bc0c0',
+        tension: 0.4, // Adds smoothness to the line
       },
     ],
   };
 
   return (
     <div style={{ width: '300px', height: '200px' }} className='p-1 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
-        {/* <h2 className='text-center font-bold'>Business Growth</h2> */}
-        <Line data={data} title='This is LineChart'/>
+      <Line data={chartData} />
     </div>
   );
 };
