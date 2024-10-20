@@ -59,7 +59,7 @@ const StackedBarLineChart = () => {
   };
 
   return (
-    <div style={{ width: '300px', height: '200px' }} className='p-4 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
+    <div style={{ width: '400px', height: '250px' }} className='p-4 flex justify-center border-[1px] border-black rounded-3xl hover:bg-blue-100 hover:transition-all'>
       <Bar data={data} options={options} />
     </div>
   );

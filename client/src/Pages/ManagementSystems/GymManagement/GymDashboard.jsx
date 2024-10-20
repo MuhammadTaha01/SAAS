@@ -127,7 +127,7 @@ const GymDashboard = () => {
               profit={gymData.totalFeeCollected} 
               loss={gymData.totalLoss} 
             />
-            <Line/>
+            <StackedBarLineChart/>
             <Radar/>
           </div>
         </div>
@@ -140,7 +140,7 @@ const GymDashboard = () => {
             {/* This is chart section */}
             <BarChart/>
             <StackedBarChart/>
-            <StackedBarLineChart/>
+            <Line/>
             <TimeScaleComboChart/>
           </div>
         </div>
