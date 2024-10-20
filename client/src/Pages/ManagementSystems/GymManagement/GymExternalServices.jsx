@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './GymComponents/Sidebar'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
 
@@ -10,7 +10,7 @@ const GymExternalService = () => {
   const { system, version } = useParams();
   const [ externalServicesData, setExternalServicesData ] = useState([])
   const [filteredData, setFilteredData] = useState([]); // <-- Missing state declaration
-
+  const navigate = useNavigate();
 
   useEffect(() => {
       axios.get('http://localhost:6969/gym_externalservices') 
@@ -23,18 +23,23 @@ const GymExternalService = () => {
 
 
   const handleDelete = (id) => {
-  if (window.confirm('Are you sure you want to delete this service?')) {
-    axios.delete(`http://localhost:6969/delete-service/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        // Update the state after successful deletion
-        setExternalServicesData((prevData) => prevData.filter(service => service.id !== id));
-      })
-      .catch((err) => console.log(err));
-  }
-};
-  
+    if (window.confirm('Are you sure you want to delete this service?')) {
+      axios.delete(`http://localhost:6969/delete-service/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          // Update the state after successful deletion
+          setExternalServicesData((prevData) => prevData.filter(service => service.id !== id));
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
+  const handleUpdate = (id) => {
+    console.log(id);
+    // Redirect to the update page
+    navigate(`/products/${system}/${version}/update-services/${id}`);
+  };
+  
 
   const columns = [
     { name: 'ID', selector: row => row.id, sortable: true, width: '70px' },
@@ -67,20 +72,18 @@ const GymExternalService = () => {
       width: '150px',
       cell: row => (
         <div className="flex gap-2" style={{ whiteSpace: 'normal' }}>
-          <Link to={`/products/${system}/${version}/update-services/${row.id}`}>
             <button
               className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-purple-200 bg-purple-800 hover:bg-purple-600"
               onClick={() => handleUpdate(row.id)}
               >
               Update
             </button>
-          </Link>
-          <button
-            className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-red-200 bg-red-800 hover:bg-red-600"
-            onClick={() => handleDelete(row.id)}
-          >
-            Delete
-          </button>
+            <button
+              className="border whitespace-nowrap border-gray-500 p-2 rounded-xl font-semibold text-red-200 bg-red-800 hover:bg-red-600"
+              onClick={() => handleDelete(row.id)}
+            >
+              Delete
+            </button>
         </div>
       ),
       ignoreRowClick: true,
