@@ -137,7 +137,7 @@ const Sidebar = () => {
               className={`font-semibold text-[17px] p-2 my-2 rounded-xl hover:transition-all hover:duration-200 ${selectedOption === 'ai-diet-plan' ? 'bg-blue-500 text-white' : 'text-blue-900 hover:bg-blue-500 hover:text-white'}`} 
               onClick={() => handleSelection('ai-diet-plan')}
             >
-              AI Diet Plan🤖
+              AI Nutrionist🤖
             </button>
           </Link>
 
