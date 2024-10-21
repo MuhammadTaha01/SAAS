@@ -9,7 +9,7 @@ const GymAiDietPlan = () => {
 
           <div className="flex flex-wrap">
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Basic Personal Information</h1>
               
               <div className="flex flex-col">
@@ -43,7 +43,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>What are your health goals?</h1>
               <div className="flex flex-col">
                 <label htmlFor="">Your health goals: </label>
@@ -57,7 +57,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Dietary Habits & prefernces</h1>
               <div className="flex flex-col">
                 <label htmlFor="">Current Diet: </label>
@@ -105,7 +105,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Health Conditions & Allergies</h1>
               <div className="flex flex-col">
                 <label htmlFor="">Do you have any known health conditions: </label>
@@ -123,7 +123,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Budget & Accessibility</h1>
               <div className="flex flex-col">
                 <label htmlFor="">What is your budget for food each week/month: </label>
@@ -140,7 +140,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>LifeStyle Factors</h1>
               <div className="flex flex-col">
                 <label htmlFor="">Do you have any dietary restrictions due to religious or cultural reasons: </label>
@@ -171,7 +171,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Medical History</h1>
               <div className="flex flex-col">
                 <label htmlFor="">Have you had any major surgeries or illnesses recently: </label>
@@ -184,7 +184,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Activity & Exercise Routine</h1>
               <div className="flex flex-col">
                 <label htmlFor="">What kind of exercise do you do: </label>
@@ -223,7 +223,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Meal timing & Prefernces</h1>
               <div className="flex flex-col">
                 <label htmlFor="">Do you have preferred meal times: </label>
@@ -263,7 +263,7 @@ const GymAiDietPlan = () => {
               </div>
             </div>
 
-            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden rounded-lg">
+            <div className="bg-purple-300 px-5 py-5 m-5 w-96 overflow-x-hidden border rounded-md hover:border-black hover:rounded-lg hover:transition-all hover:duration-100">
               <h1 className='font-semibold'>Hydration</h1>
               <div className="flex flex-col">
                 <label htmlFor="">How much water do you drink daily: </label>
